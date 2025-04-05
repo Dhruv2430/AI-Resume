@@ -6,10 +6,8 @@ import ExperiencePreview from './Preview/ExperiencePreview'
 import EducationalPreview from './Preview/EducationalPreview'
 import SkillsPreview from './Preview/SkillsPreview'
 
-
 function ResumePreview() {
-
-  const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext)
+  const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext)
 
   return (
     <div className='shadow-lg h-full p-14 border-t-[20px]'
@@ -21,7 +19,7 @@ function ResumePreview() {
 
       <SummeryPreview resumeInfo={resumeInfo} />
 
-      {resumeInfo?.Experience?.length > 0 && <ExperiencePreview resumeInfo={resumeInfo} />}
+      {resumeInfo?.experience?.length > 0 && <ExperiencePreview resumeInfo={resumeInfo} />}
 
       {resumeInfo?.education?.length > 0 && <EducationalPreview resumeInfo={resumeInfo} />}
 

@@ -12,27 +12,29 @@ function ExperiencePreview({ resumeInfo }) {
       <hr className="border-t-2" style={{ borderColor: resumeInfo?.themeColor }} />
 
       {resumeInfo?.experience?.length > 0 ? (
-        resumeInfo.experience.map((experience, index) => (
-          <div key={experience.id} className="mt-4">
-            <h2
-              className="text-sm font-semibold"
-              style={{ color: resumeInfo?.themeColor }}
-            >
-              {experience?.title}
-            </h2>
-
-            <div className="text-xs text-gray-700 mt-1 grid grid-cols-2 gap-2">
-              <span>
-                {experience?.companyName}, {experience?.city}, {experience?.state}
-              </span>
-              <span className="text-right text-gray-600">
+        resumeInfo.experience.map((experience) => (
+          <div key={experience.id} className="mt-4 mb-6">
+            <div className="flex justify-between items-center">
+              <h2
+                className="text-sm font-semibold"
+                style={{ color: resumeInfo?.themeColor }}
+              >
+                {experience?.title}
+              </h2>
+              <span className="text-xs text-gray-600">
                 {experience?.startDate} - {experience?.currentlyWorking ? 'Present' : experience?.endDate}
               </span>
             </div>
 
-            {experience?.workSummery && (
+            <div className="text-xs text-gray-700 mt-1">
+              <span>
+                {experience?.companyName}, {experience?.city}, {experience?.state}
+              </span>
+            </div>
+
+            {experience?.workSummary && (
               <p className="text-xs text-gray-600 mt-2 leading-relaxed whitespace-pre-line">
-                {experience?.workSummery}
+                {experience?.workSummary}
               </p>
             )}
           </div>
@@ -46,4 +48,4 @@ function ExperiencePreview({ resumeInfo }) {
   );
 }
 
-export default ExperiencePreview
+export default ExperiencePreview;
