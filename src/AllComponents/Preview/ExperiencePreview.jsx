@@ -32,9 +32,9 @@ function ExperiencePreview({ resumeInfo }) {
               </span>
             </div>
 
-            {experience?.workSummary && (
+            {experience?.workSummery && (
               <p className="text-xs text-gray-600 mt-2 leading-relaxed whitespace-pre-line">
-                {experience?.workSummary}
+                {experience?.workSummery}
               </p>
             )}
           </div>

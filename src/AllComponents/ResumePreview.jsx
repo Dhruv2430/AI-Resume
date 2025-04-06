@@ -24,6 +24,8 @@ function ResumePreview() {
       {resumeInfo?.education?.length > 0 && <EducationalPreview resumeInfo={resumeInfo} />}
 
       {resumeInfo?.skills?.length > 0 && <SkillsPreview resumeInfo={resumeInfo} />}
+
+      {resumeInfo?.skills?.length > 0 && <SummeryPreview resumeInfo={resumeInfo} /> }
     </div>
   )
 }
