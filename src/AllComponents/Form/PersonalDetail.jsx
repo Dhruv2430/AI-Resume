@@ -44,7 +44,8 @@ const PersonalDetail = () => {
 
         try {
             await GlobalApi.UpdateResumeDetail(params.resumeId, data)
-            toast("Details updated successfully", { type: "success" }) 
+                   toast("Details updated successfully", { type: "success" }) 
+
         } catch (error) {
             console.error("Error updating resume details:", error)
         } finally {
