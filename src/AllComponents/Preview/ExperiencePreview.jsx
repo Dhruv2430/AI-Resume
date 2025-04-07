@@ -33,7 +33,7 @@ function ExperiencePreview({ resumeInfo }) {
             </div>
 
             {experience?.workSummery && (
-          <div dangerouslySetInnerHTML={{ __html: experience.workSummery }} />
+               <div className='text-xs' dangerouslySetInnerHTML={{ __html: experience.workSummery }} />
             )}
           </div>
         ))

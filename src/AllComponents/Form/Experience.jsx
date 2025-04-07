@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import { Button } from '@/components/ui/button'
-import { CircleMinus, PlaySquare, PlusSquare } from 'lucide-react'
+import { CircleMinus, PlusSquare } from 'lucide-react'
 import RichTextEditor from '../RichTextEditor'
+import { LoaderCircle } from 'lucide-react'
+import { toast } from 'sonner'
 
 const Experience = () => {
 
     const { resumeInfo, setResumeInfo } = React.useContext(ResumeInfoContext)
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (index, event) => {
       const entery = experience.slice();
@@ -52,8 +55,17 @@ const Experience = () => {
         setExperience(entery);
     }
 
+    const onSave = () => {
+        setLoading(true)
+        const data={
+            data:{
+                Experience:experience.map(({ id, ...rest }) => rest)
+            }
+        }
+    }
+
     return (
-        <>
+        <>  
             <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
                 <h2 className='font-bold text-lg'>Experience</h2>
                 <p>Add Experience for your job</p>
@@ -103,6 +115,7 @@ const Experience = () => {
                                 </div>
                                 <div className='col-span-2'>
                                     <RichTextEditor
+                                    index={index}
                                     onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}  />
                                 </div>
                             </div>
@@ -113,7 +126,9 @@ const Experience = () => {
                       <Button variant='outline' onClick={HandleAddExprinces}> <PlusSquare/>Add More experience</Button>
                       <Button variant='outline' onClick={HandleAddExprincesRemove}> <CircleMinus /> Remove </Button>
                       </div>
-                        <Button>Save</Button>
+                      <Button disabled={loading} onClick={() => onSave()}>
+                            {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
+                        </Button>
                     </div>
                 </div>
             </div>

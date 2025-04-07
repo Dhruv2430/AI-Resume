@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
 import Summery from './Summery'
 import Experience from './Experience'
+import Education from './Education'
 
 
 
@@ -46,7 +47,11 @@ const FormSection = () => {
             <PersonalDetail enableNext={(v) => setEnableNext(v)} /> :
             activeFormIndex === 2 ? 
             <Summery /> : 
-            activeFormIndex === 3 ? <Experience/>:null }
+            activeFormIndex === 3 ?
+             <Experience/>:
+            activeFormIndex === 4 ?
+            <Education/>:
+            null }
         </div>
 
       </div>
