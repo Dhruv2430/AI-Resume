@@ -6,11 +6,15 @@ import { CircleMinus, PlusSquare } from 'lucide-react'
 import RichTextEditor from '../RichTextEditor'
 import { LoaderCircle } from 'lucide-react'
 import { toast } from 'sonner'
+import { useParams } from 'react-router-dom'
+import GlobalApi from './../../../service/GlobalApi'
 
 const Experience = () => {
 
     const { resumeInfo, setResumeInfo } = React.useContext(ResumeInfoContext)
     const [loading, setLoading] = useState(false)
+
+    const params = useParams();
 
     const handleChange = (index, event) => {
       const entery = experience.slice();
@@ -40,7 +44,7 @@ const Experience = () => {
     }
 
     const [experience, setExperience] = useState([formField])
-
+    
     useEffect(() => {   
         setResumeInfo(() => ({
             ...resumeInfo,
@@ -55,13 +59,24 @@ const Experience = () => {
         setExperience(entery);
     }
 
-    const onSave = () => {
+    const onSave = () => {  
         setLoading(true)
-        const data={
-            data:{
-                Experience:experience.map(({ id, ...rest }) => rest)
+        const data = {
+            data: {
+                Experience: experience.map(({id,...rest}) => ({
+                    ...rest
+                }))
             }
         }
+        GlobalApi.UpdateResumeDetail(params.resumeId, data)
+            .then((res) => {
+                setLoading(false)
+                toast.success('Experience saved successfully')
+            })
+            .catch((err) => {
+                setLoading(false)
+                toast.error('Failed to save experience')
+            })
     }
 
     return (
@@ -126,7 +141,7 @@ const Experience = () => {
                       <Button variant='outline' onClick={HandleAddExprinces}> <PlusSquare/>Add More experience</Button>
                       <Button variant='outline' onClick={HandleAddExprincesRemove}> <CircleMinus /> Remove </Button>
                       </div>
-                      <Button disabled={loading} onClick={() => onSave()}>
+                      <Button disabled={loading} onClick={onSave}>
                             {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
                         </Button>
                     </div>

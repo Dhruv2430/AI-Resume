@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
 import Summery from './Summery'
 import Experience from './Experience'
 import Education from './Education'
+import Skills from './Skills'
 
 
 
@@ -51,6 +52,8 @@ const FormSection = () => {
              <Experience/>:
             activeFormIndex === 4 ?
             <Education/>:
+            activeFormIndex === 5 ?
+            <Skills/>:
             null }
         </div>
 
